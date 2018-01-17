@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+
+    <!--Bootstrap-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!--medium editor-->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+
+    <!--custom css-->
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Raleway" rel="stylesheet">
+
+</head>
+<body class='loader'>
+
+
+  <nav class="navbar navbar-default techfont custom-navbar">
+    <div class="container">
+
+
+      <ul class="nav navbar-nav">
+        <li><a class='navbar-brand bigbrand' href="{% url 'post_list' %}">My Tech blog</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="https://github.com/avirupdg17">Github</a></li>
+        <li><a href="https://www.linkedin.com/in/avirupdg">LinkedIn</a></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'post_new' %}" >New Post</a>
+        </li>
+
+        <li>
+          <a href="{% url 'post_draft_list' %}">Drafts</a>
+        </li>
+        <li>
+          <a href="{% url 'logout' %}" >Log out</a>
+        </li>
+
+        <li>
+          <a >Welcome: {{ user.username }}</a>
+        </li>
+          {% else %}
+          <li><a class='nav navbar-right' href="{% url 'login' %}" ><span class="glyphicon glyphicon-user"></span></a></li>
+        {% endif %}
+
+      </ul>
+  </div>
+</nav>
+
+  {# The actual blog posts#}
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                  <div class="blog_posts">
+                    {% block content %}
+                    {% endblock %}
+
+                  </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+  <div class="stage">
+  <div class="table"></div>
+  <div class="pc"></div>
+  <div class="cup"></div>
+  <div class="cup-cover"></div>
+  <div class="clock">
+    <div class="marker-top"></div>
+    <div class="marker-right"></div>
+    <div class="marker-bottom"></div>
+    <div class="marker-left"></div>
+    <div class="pointer-min"></div>
+    <div class="pointer-hour"></div>
+    <div class="pointer"></div>
+  </div>
+  <div class="guy">
+    <div class="hat">
+      <div class="hat-hair"></div>
+      <div class="hat-close"></div>
+    </div>
+    <div class="hair-left"></div>
+    <div class="hair-middle"></div>
+    <div class="hair-right"></div>
+    <div class="ear-left"></div>
+    <div class="ear-right"></div>
+    <div class="face">
+      <div class="eye"></div>
+      <div class="eye"></div>
+      <div class="nose"></div>
+      <div class="mouth"></div>
+    </div>
+    <div class="neck"></div>
+    <div class="body"></div>
+  </div>
+  <div class="book one"></div>
+  <div class="book two"></div>
+  <div class="book three"></div>
+</div>
+{# SCRIPTS#}
+
+<script type="text/javascript" src="{% static 'js/blog.js' %}"></script>
+
+</body>
+</html>
